@@ -69,18 +69,10 @@ This project uses:
 
 ---
 
-## 🚀 Features
+##  Features
 
 - Simple counter (increment / decrement)
 - Cubit state management
 - Repository abstraction
 - Use case layer (domain logic)
 - Fully testable architecture
-
----
-
-## 🛠 Getting Started
-
-### 1. Install dependencies
-```bash
-flutter pub get
