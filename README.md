@@ -1,6 +1,6 @@
-Flutter Testing & Clean Architecture Practice App
+#Flutter Testing & Clean Architecture Practice App
 
-This project is a simple Counter App built with Flutter to practice professional software development concepts including:
+##This project is a simple Counter App built with Flutter to practice professional software development concepts including:
 
 Unit Testing (flutter_test)
 Widget Testing
@@ -9,7 +9,7 @@ BLoC/Cubit Testing (bloc_test)
 Clean Architecture (Domain / Data / Presentation)
 Use Cases & Repository Pattern
 Code Coverage (lcov)
-🚀 Project Goal
+Project Goal
 
 The goal of this project is to learn how to structure and test a Flutter application like a real production app.
 
@@ -20,3 +20,29 @@ Write unit and widget tests
 Mock dependencies
 Test BLoC/Cubit logic
 Measure test coverage
+
+##🧱 Architecture
+
+The project follows Clean Architecture:
+
+      lib/
+      │
+      ├── core/
+      │
+      ├── features/
+      │   └── counter/
+      │       ├── data/
+      │       │   ├── datasources/
+      │       │   ├── models/
+      │       │   └── repositories/
+      │       │
+      │       ├── domain/
+      │       │   ├── entities/
+      │       │   ├── repositories/
+      │       │   └── usecases/
+      │       │
+      │       └── presentation/
+      │           ├── cubit/
+      │           └── pages/
+      │
+      └── main.dart
