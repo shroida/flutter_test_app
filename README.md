@@ -73,8 +73,4 @@ The goal of this project is to learn how to structure and test a Flutter applica
 - Use case layer
 - Fully testable architecture
 
----
 
-## 👨‍💻 Author
-
-Built for learning Flutter Testing + Clean Architecture
