@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_test_app/features/counter/data/repositories/counter_repository_impl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 
@@ -27,4 +28,10 @@ void main() {
     // Assert
     expect(result, -1);
   });
+  test('should throw exception for invalid input', () {
+  final repo = CounterRepositoryImpl();
+  final useCase = DecrementUseCase(repo);
+
+  expect(() => useCase(-999999999), throwsException);
+});
 }
