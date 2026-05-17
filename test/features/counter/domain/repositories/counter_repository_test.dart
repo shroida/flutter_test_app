@@ -19,10 +19,10 @@ void main() {
     when(mockRepository.increment(any)).thenReturn(1);
 
     // Act
-    final result = mockRepository.increment(2);
+    final result = mockRepository.increment(1);
 
     // Assert
     expect(result, 1);
-    verify(mockRepository.increment(2)).called(1);
+    verify(mockRepository.increment(1)).called(1);
   });
 }
