@@ -15,44 +15,50 @@ void main() {
 
   late MockCounterRepository mockRepository;
 
-  late CounterCubit cubit;
-
   setUp(() {
-
     mockRepository = MockCounterRepository();
-
-    cubit = CounterCubit(
-      incrementUseCase: IncrementUseCase(mockRepository),
-      decrementUseCase: DecrementUseCase(mockRepository),
-    );
   });
 
+
+
   blocTest<CounterCubit, int>(
+    
     'should emit [1] when increment succeeds',
 
     setUp: () {
+ 
       when(
         mockRepository.increment(any),
       ).thenReturn(1);
     },
 
-    build: () => cubit,
+  build: () {
+ 
 
+    return CounterCubit(
+      incrementUseCase: IncrementUseCase(mockRepository),
+      decrementUseCase: DecrementUseCase(mockRepository),
+    );
+  },
     act: (cubit) => cubit.increment(),
 
     expect: () => [1],
   );
 
+
   blocTest<CounterCubit, int>(
     'should emit [-1] when decrement succeeds',
 
     setUp: () {
-      when(
-        mockRepository.decrement(any),
-      ).thenReturn(-1);
+      when(mockRepository.decrement(any)).thenReturn(-1);
     },
 
-    build: () => cubit,
+    build: () {
+      return CounterCubit(
+        incrementUseCase: IncrementUseCase(mockRepository),
+        decrementUseCase: DecrementUseCase(mockRepository),
+      );
+    },
 
     act: (cubit) => cubit.decrement(),
 
