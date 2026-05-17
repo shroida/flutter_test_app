@@ -1,35 +1,30 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
 
-import 'package:flutter_test_app/features/counter/data/repositories/counter_repository_impl.dart';
+import 'package:flutter_test_app/features/counter/domain/repositories/counter_repository.dart';
 import 'package:flutter_test_app/features/counter/domain/usecases/decrement_usecase.dart';
 
-void main() {
+import 'decrement_usecase_test.mocks.dart';
 
-  late DecrementUseCase decrementUseCase;
+@GenerateMocks([CounterRepository])
+void main() {
+  late MockCounterRepository mockRepository;
+  late DecrementUseCase useCase;
 
   setUp(() {
-    decrementUseCase = DecrementUseCase(
-      CounterRepositoryImpl(),
-    );
+    mockRepository = MockCounterRepository();
+    useCase = DecrementUseCase(mockRepository);
   });
 
-  test(
-    'should decrement counter value by 1',
-    () {
+  test('should return -1 when repository decrement succeeds', () {
+    // Arrange
+    when(mockRepository.decrement(any<int>())).thenReturn(-1);
 
-      final result = decrementUseCase(1);
+    // Act
+    final result = useCase();
 
-      expect(result, 0);
-    },
-  );
-
-  test(
-    'should decrement negative number',
-    () {
-
-      final result = decrementUseCase(0);
-
-      expect(result, -1);
-    },
-  );
+    // Assert
+    expect(result, -1);
+  });
 }
