@@ -2,17 +2,16 @@ import 'package:flutter_test_app/features/counter/domain/repositories/counter_re
 
 
 class CounterRepositoryImpl implements CounterRepository {
-  int _value = 0;
 
   @override
   int increment(int value) {
-    _value += value;
-    return _value;
+     
+    return value+1;
   }
 
   @override
   int decrement(int value) {
-    _value -= value;
-    return _value;
+     
+    return value-1;
   }
 }

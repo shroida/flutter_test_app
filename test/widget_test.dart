@@ -6,23 +6,18 @@ import 'package:flutter_test_app/main.dart';
 
 void main() {
 
-  testWidgets(
-    'counter increments test',
-    (WidgetTester tester) async {
+testWidgets('counter increments test', (tester) async {
 
-      await tester.pumpWidget(
-        MyApp(
-          repository: CounterRepositoryImpl(),
-        ),
-      );
-
-      expect(find.text('0'), findsOneWidget);
-
-      await tester.tap(find.byIcon(Icons.add));
-
-      await tester.pump();
-
-      expect(find.text('1'), findsOneWidget);
-    },
+  await tester.pumpWidget(
+    MyApp(repository: CounterRepositoryImpl()),
   );
+
+  expect(find.text('0'), findsOneWidget);
+
+  await tester.tap(find.byIcon(Icons.add));
+
+  await tester.pumpAndSettle();
+
+  expect(find.text('1'), findsOneWidget);
+});
 }
