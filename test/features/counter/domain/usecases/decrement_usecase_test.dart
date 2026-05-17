@@ -19,10 +19,10 @@ void main() {
 
   test('should return -1 when repository decrement succeeds', () {
     // Arrange
-    when(mockRepository.decrement(any<int>())).thenReturn(-1);
+    when(mockRepository.decrement(any)).thenReturn(-1);
 
     // Act
-    final result = useCase();
+    final result = useCase(0);
 
     // Assert
     expect(result, -1);
