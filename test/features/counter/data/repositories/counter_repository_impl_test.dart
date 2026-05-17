@@ -47,4 +47,22 @@ void main() {
 
     expect(result, 99);
   });
+
+  test('should handle zero correctly', () {
+  final repo = CounterRepositoryImpl();
+
+  expect(repo.increment(0), 1);
+  expect(repo.decrement(0), -1);
+});
+test('should handle negative input', () {
+  final repo = CounterRepositoryImpl();
+
+  expect(repo.increment(-1), 0);
+});
+
+test('should handle large numbers safely', () {
+  final repo = CounterRepositoryImpl();
+
+  expect(repo.increment(999999), 1000000);
+});
 }
