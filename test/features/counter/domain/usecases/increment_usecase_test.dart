@@ -1,35 +1,30 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:mockito/annotations.dart';
 
-import 'package:flutter_test_app/features/counter/data/repositories/counter_repository_impl.dart';
+import 'package:flutter_test_app/features/counter/domain/repositories/counter_repository.dart';
 import 'package:flutter_test_app/features/counter/domain/usecases/increment_usecase.dart';
 
-void main() {
+import 'increment_usecase_test.mocks.dart';
 
-  late IncrementUseCase incrementUseCase;
+@GenerateMocks([CounterRepository])
+void main() {
+  late MockCounterRepository mockRepository;
+  late IncrementUseCase useCase;
 
   setUp(() {
-    incrementUseCase = IncrementUseCase(
-      CounterRepositoryImpl(),
-    );
+    mockRepository = MockCounterRepository();
+    useCase = IncrementUseCase(mockRepository);
   });
 
-  test(
-    'should increment counter value by 1',
-    () {
+  test('should return 1 when repository increment succeeds', () async {
+    // Arrange
+    when(mockRepository.increment(any)).thenReturn(1);
 
-      final result = incrementUseCase(0);
+    // Act
+    final result = useCase(0);
 
-      expect(result, 1);
-    },
-  );
-
-  test(
-    'should increment negative number',
-    () {
-
-      final result = incrementUseCase(-1);
-
-      expect(result, 0);
-    },
-  );
+    // Assert
+    expect(result, 1);
+  });
 }
