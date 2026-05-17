@@ -40,6 +40,7 @@ dependencies:
   build_runner: ^2.15.0
   lcov_dart: ^7.0.0
   equatable: ^2.0.8
+  mockito: ^5.6.4
 
 dev_dependencies:
 
