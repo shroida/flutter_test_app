@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:flutter_test_app/features/counter/domain/repositories/counter_repository.dart';
@@ -7,9 +8,9 @@ import 'package:flutter_test_app/features/counter/domain/usecases/decrement_usec
 import 'package:flutter_test_app/features/counter/domain/usecases/increment_usecase.dart';
 import 'package:flutter_test_app/features/counter/presentation/cubit/counter_cubit.dart';
 
-class MockCounterRepository extends Mock
-    implements CounterRepository {}
+import 'counter_cubit_test.mocks.dart';
 
+@GenerateMocks([CounterRepository])
 void main() {
 
   late MockCounterRepository mockRepository;
@@ -29,14 +30,13 @@ void main() {
   blocTest<CounterCubit, int>(
     'should emit [1] when increment succeeds',
 
-    build: () {
-
+    setUp: () {
       when(
-        mockRepository.increment(0),
+        mockRepository.increment(any),
       ).thenReturn(1);
-
-      return cubit;
     },
+
+    build: () => cubit,
 
     act: (cubit) => cubit.increment(),
 
@@ -46,14 +46,13 @@ void main() {
   blocTest<CounterCubit, int>(
     'should emit [-1] when decrement succeeds',
 
-    build: () {
-
+    setUp: () {
       when(
-        mockRepository.decrement(0),
+        mockRepository.decrement(any),
       ).thenReturn(-1);
-
-      return cubit;
     },
+
+    build: () => cubit,
 
     act: (cubit) => cubit.decrement(),
 
