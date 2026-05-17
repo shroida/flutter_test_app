@@ -41,6 +41,7 @@ dependencies:
   lcov_dart: ^7.0.0
   equatable: ^2.0.8
   mockito: ^5.6.4
+  bloc_test: ^10.0.0
 
 dev_dependencies:
 
